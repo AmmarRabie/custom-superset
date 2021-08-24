@@ -1,113 +1,149 @@
 
 
+from tkinter.constants import NONE
 from typing import Iterable
 from copy import deepcopy
 BASE_URL = "https://superset.sigmaproit.com/superset/explore/?form_data="
 
+# DEFAULT_FORM_DATA = {
+#     "viz_type": "table",
+#     "datasource": "2__table",
+#     "slice_id": 1,
+#     "url_params": {},
+#     "time_range_endpoints": [
+#         "inclusive",
+#         "exclusive"
+#     ],
+#     "granularity_sqla": "CreatedAt",
+#     "time_grain_sqla": "P1W",
+#     "time_range": "No+filter",
+#     "query_mode": "aggregate",
+#     "groupby": [
+#         "CreatedAt"
+#     ],
+#     "metrics": [
+#         {
+#             "aggregate": "SUM",
+#             "column": {
+#                 "column_name": "GrandPrice",
+#                 "description": None,
+#                 "expression": None,
+#                 "filterable": True,
+#                 "groupby": True,
+#                 # "id": 65,
+#                 "is_dttm": False,
+#                 "python_date_format": None,
+#                 "type": "DOUBLE+PRECISION",
+#                 "type_generic": 0,
+#                 "verbose_name": None
+#             },
+#             "expressionType": "SIMPLE",
+#             "hasCustomLabel": False,
+#             "isNew": False,
+#             "label": "SUM(GrandPrice)",
+#             "optionName": "metric_mo8fyt7psn_p8p4qe6fcog",
+#             "sqlExpression": None
+#         }
+#     ],
+#     "all_columns": [],
+#     "percent_metrics": [
+#         {
+#             "aggregate": "SUM",
+#             "column": {
+#                 "column_name": "GrandPrice",
+#                 "description": None,
+#                 "expression": None,
+#                 "filterable": True,
+#                 "groupby": True,
+#                 "id": 65,
+#                 "is_dttm": False,
+#                 "python_date_format": None,
+#                 "type": "DOUBLE+PRECISION",
+#                 "type_generic": 0,
+#                 "verbose_name": None
+#             },
+#             "expressionType": "SIMPLE",
+#             "hasCustomLabel": False,
+#             "isNew": False,
+#             "label": "SUM(GrandPrice)",
+#             "optionName": "metric_xj0o4ozjzql_f94di6n5abe",
+#             "sqlExpression": None
+#         }
+#     ],
+#     "timeseries_limit_metric": {
+#         "aggregate": "MAX",
+#         "column": {
+#             "column_name": "CreatedAt",
+#             "description": None,
+#             "expression": None,
+#             "filterable": True,
+#             "groupby": True,
+#             "id": 60,
+#             "is_dttm": True,
+#             "python_date_format": None,
+#             "type": "TIMESTAMP+WITH+TIME+ZONE",
+#             "type_generic": 2,
+#             "verbose_name": None
+#         },
+#         "expressionType": "SIMPLE",
+#         "hasCustomLabel": False,
+#         "isNew": False,
+#         "label": "MAX(CreatedAt)",
+#         "optionName": "metric_5b6oe4j3gh_ryge9yhtsc",
+#         "sqlExpression": None
+#     },
+#     "order_by_cols": [],
+#     "row_limit": 10000,
+#     "server_page_length": 10,
+#     "order_desc": True,
+#     "adhoc_filters": [
+#         {
+#             "clause": "WHERE",
+#             "comparator": "pending",
+#             "expressionType": "SIMPLE",
+#             "filterOptionName": "filter_bb9rky0uz1_n7fifkdfgq",
+#             "isExtra": False,
+#             "isNew": False,
+#             "operator": "==",
+#             "operatorId": "NOT_EQUALS",
+#             "sqlExpression": None,
+#             "subject": "Status"
+#         }
+#     ],
+#     "table_timestamp_format": "smart_date",
+#     "show_cell_bars": True,
+#     "color_pn": True,
+#     "extra_form_data": {}
+# }
 DEFAULT_FORM_DATA = {
     "viz_type": "table",
     "datasource": "2__table",
-    "slice_id": 1,
     "url_params": {},
-    "time_range_endpoints": [
-        "inclusive",
-        "exclusive"
-    ],
+    "time_range_endpoints": ["inclusive", "exclusive"],
     "granularity_sqla": "CreatedAt",
-    "time_grain_sqla": "P1W",
-    "time_range": "No+filter",
+    "time_grain_sqla": "P1D",
+    "time_range": "No filter",
     "query_mode": "aggregate",
-    "groupby": [
-        "CreatedAt"
-    ],
-    "metrics": [
-        {
-            "aggregate": "SUM",
-            "column": {
-                "column_name": "GrandPrice",
-                "description": None,
-                "expression": None,
-                "filterable": True,
-                "groupby": True,
-                # "id": 65,
-                "is_dttm": False,
-                "python_date_format": None,
-                "type": "DOUBLE+PRECISION",
-                "type_generic": 0,
-                "verbose_name": None
-            },
-            "expressionType": "SIMPLE",
-            "hasCustomLabel": False,
-            "isNew": False,
-            "label": "SUM(GrandPrice)",
-            "optionName": "metric_mo8fyt7psn_p8p4qe6fcog",
-            "sqlExpression": None
-        }
-    ],
+    "groupby": ["Merchant_Name", "Status"],
     "all_columns": [],
-    "percent_metrics": [
-        {
-            "aggregate": "SUM",
-            "column": {
-                "column_name": "GrandPrice",
-                "description": None,
-                "expression": None,
-                "filterable": True,
-                "groupby": True,
-                "id": 65,
-                "is_dttm": False,
-                "python_date_format": None,
-                "type": "DOUBLE+PRECISION",
-                "type_generic": 0,
-                "verbose_name": None
-            },
-            "expressionType": "SIMPLE",
-            "hasCustomLabel": False,
-            "isNew": False,
-            "label": "SUM(GrandPrice)",
-            "optionName": "metric_xj0o4ozjzql_f94di6n5abe",
-            "sqlExpression": None
-        }
-    ],
-    "timeseries_limit_metric": {
-        "aggregate": "MAX",
-        "column": {
-            "column_name": "CreatedAt",
-            "description": None,
-            "expression": None,
-            "filterable": True,
-            "groupby": True,
-            "id": 60,
-            "is_dttm": True,
-            "python_date_format": None,
-            "type": "TIMESTAMP+WITH+TIME+ZONE",
-            "type_generic": 2,
-            "verbose_name": None
-        },
-        "expressionType": "SIMPLE",
-        "hasCustomLabel": False,
-        "isNew": False,
-        "label": "MAX(CreatedAt)",
-        "optionName": "metric_5b6oe4j3gh_ryge9yhtsc",
-        "sqlExpression": None
-    },
+    "percent_metrics": [],
     "order_by_cols": [],
-    "row_limit": 10000,
+    "row_limit": 10,
     "server_page_length": 10,
     "order_desc": True,
     "adhoc_filters": [
         {
-            "clause": "WHERE",
-            "comparator": "pending",
             "expressionType": "SIMPLE",
-            "filterOptionName": "filter_bb9rky0uz1_n7fifkdfgq",
+            "subject": "Status",
+            "operator": "==",
+            "operatorId": "NOT_EQUALS",
+            "comparator": "pending",
+            "clause": "WHERE",
+            "sqlExpression": None,
             "isExtra": False,
             "isNew": False,
-            "operator": "!=",
-            "operatorId": "NOT_EQUALS",
-            "sqlExpression": None,
-            "subject": "Status"
-        }
+            "filterOptionName": "filter_yvcybgymx0d_c6s7xwdpmm"
+        },
     ],
     "table_timestamp_format": "smart_date",
     "show_cell_bars": True,
@@ -116,8 +152,7 @@ DEFAULT_FORM_DATA = {
 }
 
 
-VALUE_TO_VALUE_ITERABLE_UPDATE = [
-    "metrics", "adhoc_filters", "percent_metrics"]
+VALUE_TO_VALUE_ITERABLE_UPDATE = ["metrics", b"adhoc_filters", "percent_metrics"]
 
 
 def nestedMerge(original, updates):
