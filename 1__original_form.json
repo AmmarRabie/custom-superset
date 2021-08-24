@@ -1,0 +1,109 @@
+var m = {
+    // "viz_type": "table",
+    // "datasource": "2__table",
+    // "slice_id": 1, // when chart is saved, a slice is created for that chart. changes are explored when that specefied..
+    "url_params": {},
+    "time_range_endpoints": [
+        "inclusive",
+        "exclusive"
+    ],
+    // "granularity_sqla": "CreatedAt", // Time/Time column
+    // "time_grain_sqla": "P1W", // Time/Time Grain, ISO8601 duration format => values from UI are ('PT1S', 'PT1M', 'PT1H', 'P1D', 'P1W', 'p1M', 'PT0.25Y', 'PT1Y')
+    // "time_range": "No+filter", // No+filter, Last+day, Last+Week
+    // "query_mode": "aggregate", // "aggregate", "raw records"
+    // "groupby": [
+    //     "CreatedAt"
+    // ],
+    "metrics": [
+        {
+            "aggregate": "SUM",
+            "column": {
+                "column_name": "GrandPrice",
+                "description": null,
+                "expression": null,
+                "filterable": true,
+                "groupby": true,
+                "is_dttm": false,
+                "python_date_format": null,
+                "type": "DOUBLE+PRECISION",
+                "type_generic": 0,
+                "verbose_name": null
+            },
+            "expressionType": "SIMPLE",
+            "hasCustomLabel": false,
+            "isNew": false,
+            "label": "SUM(GrandPrice)",
+            "optionName": "metric_mo8fyt7psn_p8p4qe6fcog",
+            "sqlExpression": null
+        }
+    ],
+    "all_columns": [],
+    "percent_metrics": [
+        {
+            "aggregate": "SUM",
+            "column": {
+                "column_name": "GrandPrice",
+                "description": null,
+                "expression": null,
+                "filterable": true,
+                "groupby": true,
+                "id": 65,
+                "is_dttm": false,
+                "python_date_format": null,
+                "type": "DOUBLE+PRECISION",
+                "type_generic": 0,
+                "verbose_name": null
+            },
+            "expressionType": "SIMPLE",
+            "hasCustomLabel": false,
+            "isNew": false,
+            "label": "SUM(GrandPrice)",
+            "optionName": "metric_xj0o4ozjzql_f94di6n5abe",
+            "sqlExpression": null
+        }
+    ],
+    "timeseries_limit_metric": {
+        "aggregate": "MAX",
+        "column": {
+            "column_name": "CreatedAt",
+            "description": null,
+            "expression": null,
+            "filterable": true,
+            "groupby": true,
+            "id": 60,
+            "is_dttm": true,
+            "python_date_format": null,
+            "type": "TIMESTAMP+WITH+TIME+ZONE",
+            "type_generic": 2,
+            "verbose_name": null
+        },
+        "expressionType": "SIMPLE",
+        "hasCustomLabel": false,
+        "isNew": false,
+        "label": "MAX(CreatedAt)",
+        "optionName": "metric_5b6oe4j3gh_ryge9yhtsc",
+        "sqlExpression": null
+    },
+    // "order_by_cols": [],
+    // "row_limit": 10000,
+    // "server_page_length": 10,
+    // "order_desc": true,
+    "adhoc_filters": [
+        {
+            "clause": "WHERE",
+            "comparator": "pending",
+            "expressionType": "SIMPLE",
+            "filterOptionName": "filter_bb9rky0uz1_n7fifkdfgq",
+            "isExtra": false,
+            "isNew": false,
+            "operator": "!=",
+            "operatorId": "NOT_EQUALS",
+            "sqlExpression": null,
+            "subject": "Status"
+        }
+    ],
+    "table_timestamp_format": "smart_date",
+    "show_cell_bars": true,
+    "color_pn": true,
+    "extra_form_data": {}
+}
