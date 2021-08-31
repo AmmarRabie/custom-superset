@@ -1,6 +1,5 @@
 from html.entities import html5
-from flask import Flask, jsonify
-from flask.scaffold import F
+from flask import Flask, request, jsonify
 from werkzeug.utils import redirect
 from main import nestedMerge, DEFAULT_FORM_DATA, BASE_URL
 import json
@@ -33,7 +32,7 @@ def report(status):
     formData = deepcopy(DEFAULT_FORM_DATA)
     formData['adhoc_filters'][0]['comparator'] = status
 
-    isStandalone = False
+    isStandalone = request.args.get('standalone', default="1") == '1'
     url = BASE_URL + json.dumps(formData, separators=(',', ":")) + ("&standalone=1" if isStandalone else "")
 
     return renderTemplate(url)
